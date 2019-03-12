@@ -1,0 +1,32 @@
+@import 'variables';
+
+@import "components";
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow-x: hidden;
+  font-family: #fonts[font-primary];
+  font-size: #fonts[font-size-base];
+
+  &.map-fullwidth {
+  	overflow: hidden;
+  }
+}
+
+a {
+  color: #000;
+  transition: .3s;
+
+	&:hover, &:focus, &:active, &.active {
+	  color: #colors[gray_600];
+	  text-decoration: none;
+	}
+} 
+
+*:focus,
+*:checked {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
