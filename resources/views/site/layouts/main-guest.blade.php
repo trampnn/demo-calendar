@@ -13,7 +13,7 @@
   @yield('page-css')
 
   <!-- ========== CSS Site ========== -->
-  <link rel="stylesheet" href="site/css/site.css">
+  <link rel="stylesheet/less" type="text/css" href="site/scss/site.less" />
 
 	@yield('style')
 @endsection

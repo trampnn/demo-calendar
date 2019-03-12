@@ -21,28 +21,19 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{'storage/'.Voyager::setting('favicon_logo')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{'storage/'.Voyager::setting('favicon_logo')}}">
 
-  <!-- Google Fonts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
-      active: function() {
-        sessionStorage.fonts = true;
-      }
-    });
-  </script>
-
   @yield('main-style')
 
   <!-- jQuery -->
   <script src="vendor/jquery-3.3.1/jquery-3.3.1.min.js"></script>
-  @yield('dataTables')
-  @yield('main-script')
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
 </head>
 <body>
-
   @yield('main-content')
 
   @yield('modal')
+
+  @yield('dataTables')
+
+  @yield('main-script')
 </body>
 </html>
