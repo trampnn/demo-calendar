@@ -8,19 +8,7 @@
 	<link rel="stylesheet" href="site/lib/fullcalendar-scheduler-1.9.4/scheduler.min.css">
 @stop
 @section('style')
-	<style>
-	  body {
-	    margin-top: 40px;
-	    text-align: center;
-	    font-size: 14px;
-	    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	  }
-	    
-	  #wrap {
-	    width: 1100px;
-	    margin: 0 auto;
-	  }
-	    
+	<style>	    
 	  #external-events {
 	    float: left;
 	    width: 150px;
@@ -52,29 +40,36 @@
 	    vertical-align: middle;
 	  }
 
-	  #calendar {
-	    float: right;
-	    width: 900px;
-	  }
+
+	  /*#calendar thead.fc-head td {
+			height: 48px;
+			vertical-align: middle;
+	  }*/
 	</style>
 @stop
 @section('content')
-	<div id='wrap'>
-    <div id='external-events'>
-      <h4>Draggable Events</h4>
-      <div class='fc-event'>Lịch Xe 1</div>
-      <div class='fc-event'>Lịch Xe 2</div>
-      <div class='fc-event'>Lịch Xe 3</div>
-      <p>
-        <input type='checkbox' id='drop-remove' />
-        <label for='drop-remove'>remove after drop</label>
-      </p>
-    </div>
+	<section class="py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-3">
+					<div id='external-events'>
+			      <h4>Draggable Events</h4>
+			      <div class='fc-event'>Lịch Xe 1</div>
+			      <div class='fc-event'>Lịch Xe 2</div>
+			      <div class='fc-event'>Lịch Xe 3</div>
+			      <p>
+			        <input type='checkbox' id='drop-remove' />
+			        <label for='drop-remove'>remove after drop</label>
+			      </p>
+			    </div>
+				</div>
 
-    <div id='calendar'></div>
-
-    <div style='clear:both'></div>
-  </div>
+				<div class="col-12 col-md-9">
+					<div id='calendar'></div>
+				</div>
+			</div>
+		</div>
+	</section>
 @stop
 @section('page-modal')
 	<div class="modal" id="eventModal" tabindex="-1" role="dialog">
@@ -158,19 +153,37 @@
 	      droppable: true, // this allows things to be dropped onto the calendar
         eventLimit: true, // allow "more" link when too many events
         selectable: true,
-	      aspectRatio: 1.8,
-	      scrollTime: '00:00',
+	      aspectRatio: 'none',
 	      timeFormat: 'H(:mm)', // uppercase H for 24-hour clock
+	      customButtons: {
+			    monthPicker: {
+			      icon: 'fa fas fa-calendar-alt',
+			      click: function() {
+			        alert('clicked the custom button!');
+			      }
+			    }
+			  },
 	      header: {
-	        left: 'today prev,next',
-	        center: 'title',
-	        right: 'timeline'
+	        left: 'title',
+	        center: '',
+	        right: 'monthPicker prev,next'
 	      },
 	      defaultView: 'timeline',
-	      visibleRange: {
+	      duration: { months: 1 },
+	      /*views: {
+	      	timelineMonth: {
+	      		type: 'timeline',
+	          duration: { months: 1 }
+	      	},
+	        timelineThreeMonths: {
+	          type: 'timeline',
+	          duration: { months: 3 }
+	        }
+	      },*/
+	      /*visibleRange: {
 		      start: moment().startOf('month'),
 		      end: moment().endOf('month').add(1, 'days')
-		    },
+		    },*/
 	      resourceAreaWidth: '10%',
       	resourceLabelText: 'Xe',
 	      resources: [
@@ -234,8 +247,6 @@
 		        // hide modal
 		        $('#createEventModal').modal('hide');
 		    	});
-
-	      	//alert('Ngày bắt đầu:' + dayStart + ' ; Ngày kết thúc:' + dayEnd + ' ; Mã xe:' + verhicleId);
 			  }
 	    });
 	  });
